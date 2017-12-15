@@ -63,7 +63,8 @@ class JumpToKeyword(sublime_plugin.TextCommand):
             )
 
     def filter_given_when_then(self, line):
-        regex = r'^\s*(?i)(GIVEN|WHEN|THEN) (.*)$'
+        joined_kw_prefixes = "|".join(get_setting(SettingObject.kw_prefixes))
+        regex = r'^\s*(?i)(%s) (.*)$' % joined_kw_prefixes
         findings = re.search(regex, line)
         return findings.group(2) if findings else line
 
