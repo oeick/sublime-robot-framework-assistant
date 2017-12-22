@@ -68,7 +68,7 @@ class JumpToKeyword(sublime_plugin.TextCommand):
             joined_kw_prefixes = "|".join(kw_prefixes)
             regex = r'(^| {4}|\t)(?i)(%s) (.*)$' % joined_kw_prefixes
             findings = re.search(regex, line)
-            return findings.group(2) if findings else line
+            return findings.group(3) if findings else line
         else:
             return line
 
